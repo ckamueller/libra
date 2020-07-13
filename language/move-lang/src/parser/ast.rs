@@ -282,6 +282,7 @@ pub enum SpecConditionKind {
     Ensures,
     Requires,
     RequiresModule,
+    Modifies,
     Invariant,
     InvariantUpdate,
     InvariantPack,

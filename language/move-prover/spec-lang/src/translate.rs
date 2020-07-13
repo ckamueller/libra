@@ -1658,6 +1658,10 @@ impl<'env, 'translator> ModuleTranslator<'env, 'translator> {
 
     /// Compute the expected type for the expression in a condition.
     fn expected_type_for_condition(&mut self, kind: &ConditionKind) -> Type {
+        if let ConditionKind::Modifies = kind {
+            // We do not know the exact type of the field modified, ensures we pass the type check.
+            return Type::Error;
+        }
         if let Some((mid, vid, ty_args)) = kind.get_spec_var_target() {
             if mid == self.module_id {
                 self.spec_vars[vid.as_usize()]
@@ -1699,6 +1703,7 @@ impl<'env, 'translator> ModuleTranslator<'env, 'translator> {
             PK::AbortsIf => Some((AbortsIf, exp)),
             PK::SucceedsIf => Some((SucceedsIf, exp)),
             PK::RequiresModule => Some((RequiresModule, exp)),
+            PK::Modifies => Some((Modifies, exp)),
             PK::Invariant => Some((Invariant, exp)),
             PK::InvariantModule => Some((InvariantModule, exp)),
             PK::InvariantUpdate => {

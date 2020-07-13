@@ -80,6 +80,8 @@ pub enum Condition_ {
     AbortsIf(SpecExp),
     /// If the given expression is true, the procedure *must* terminate in a succeeding state
     SucceedsIf(SpecExp),
+    /// The procedure may modify the field specified
+    Modifies(SpecExp)
 }
 
 /// Specification directive with span.

@@ -1776,7 +1776,7 @@ fn parse_spec_block_member<'input>(tokens: &mut Lexer<'input>) -> Result<SpecBlo
         Tok::Define | Tok::Native => parse_spec_function(tokens),
         Tok::IdentifierValue => match tokens.content() {
             "assert" | "assume" | "decreases" | "aborts_if" | "succeeds_if" | "ensures"
-            | "requires" => parse_condition(tokens),
+            | "requires" | "modifies" => parse_condition(tokens),
             "include" => parse_spec_include(tokens),
             "apply" => parse_spec_apply(tokens),
             "pragma" => parse_spec_pragma(tokens),
@@ -1815,7 +1815,8 @@ fn parse_condition<'input>(tokens: &mut Lexer<'input>) -> Result<SpecBlockMember
             } else {
                 SpecConditionKind::Requires
             }
-        }
+        },
+        "modifies" => SpecConditionKind::Modifies,
         _ => unreachable!(),
     };
     tokens.advance()?;
