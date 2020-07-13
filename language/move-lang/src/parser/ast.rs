@@ -901,6 +901,7 @@ impl AstDebug for SpecConditionKind {
             Ensures => w.write("ensures "),
             Requires => w.write("requires "),
             RequiresModule => w.write("requires module "),
+            Modifies => w.write("modifies "),
             Invariant => w.write("invariant "),
             InvariantUpdate => w.write("invariant update "),
             InvariantPack => w.write("invariant pack "),
