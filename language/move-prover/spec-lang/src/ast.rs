@@ -56,6 +56,7 @@ pub enum ConditionKind {
     Ensures,
     Requires,
     RequiresModule,
+    Modifies,
     Invariant,
     InvariantModule,
     InvariantUpdate,
@@ -86,7 +87,7 @@ impl ConditionKind {
         use ConditionKind::*;
         matches!(
             self,
-            Requires | RequiresModule | AbortsIf | SucceedsIf | Ensures
+            Requires | RequiresModule | AbortsIf | SucceedsIf | Ensures | Modifies
         )
     }
 
@@ -95,7 +96,7 @@ impl ConditionKind {
         use ConditionKind::*;
         matches!(
             self,
-            Requires | RequiresModule | AbortsIf | SucceedsIf | Ensures
+            Requires | RequiresModule | AbortsIf | SucceedsIf | Ensures | Modifies
         )
     }
 
@@ -130,6 +131,7 @@ impl std::fmt::Display for ConditionKind {
             Ensures => write!(f, "ensures"),
             Requires => write!(f, "requires"),
             RequiresModule => write!(f, "requires module"),
+            Modifies => write!(f, "modifies"),
             Invariant => write!(f, "invariant"),
             InvariantModule => write!(f, "invariant module"),
             InvariantUpdate => write!(f, "invariant update"),

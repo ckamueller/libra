@@ -1610,6 +1610,10 @@ fn parse_spec_condition<'input>(
             tokens.advance()?;
             Condition_::SucceedsIf(parse_spec_exp(tokens)?)
         }
+        Tok::Modifies => {
+            tokens.advance()?;
+            Condition_::Modifies(parse_spec_exp(tokens)?)
+        }
         _ => {
             tokens.spec_mode = false;
             return Err(ParseError::InvalidToken {
