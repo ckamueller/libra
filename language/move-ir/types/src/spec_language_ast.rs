@@ -81,7 +81,9 @@ pub enum Condition_ {
     /// If the given expression is true, the procedure *must* terminate in a succeeding state
     SucceedsIf(SpecExp),
     /// The procedure may modify the field specified
-    Modifies(SpecExp)
+    Modifies(SpecExp),
+    /// The procedure moves a resource to the account specified
+    MovesTo(SpecExp),
 }
 
 /// Specification directive with span.

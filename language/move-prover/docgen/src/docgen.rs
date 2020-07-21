@@ -66,6 +66,7 @@ const WEAK_KEYWORDS: &[&str] = &[
     "ensures",
     "requires",
     "modifies",
+    "moves_to",
     "pack",
     "unpack",
     "update",

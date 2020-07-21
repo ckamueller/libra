@@ -1662,6 +1662,10 @@ impl<'env, 'translator> ModuleTranslator<'env, 'translator> {
             // We do not know the exact type of the field modified, ensures we pass the type check.
             return Type::Error;
         }
+        if let ConditionKind::MovesTo = kind {
+            // We do not know the exact type of the resource moved, ensures we pass the type check.
+            return Type::Error;
+        }
         if let Some((mid, vid, ty_args)) = kind.get_spec_var_target() {
             if mid == self.module_id {
                 self.spec_vars[vid.as_usize()]
@@ -1704,6 +1708,7 @@ impl<'env, 'translator> ModuleTranslator<'env, 'translator> {
             PK::SucceedsIf => Some((SucceedsIf, exp)),
             PK::RequiresModule => Some((RequiresModule, exp)),
             PK::Modifies => Some((Modifies, exp)),
+            PK::MovesTo => Some((MovesTo, exp)),
             PK::Invariant => Some((Invariant, exp)),
             PK::InvariantModule => Some((InvariantModule, exp)),
             PK::InvariantUpdate => {
