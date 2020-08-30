@@ -336,6 +336,9 @@ pub enum Operation {
     MaxU8,
     MaxU64,
     MaxU128,
+
+    // Custom
+    Count,
 }
 
 #[derive(Debug, Clone, PartialEq)]

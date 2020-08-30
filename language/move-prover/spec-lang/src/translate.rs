@@ -645,11 +645,24 @@ impl<'env> Translator<'env> {
                 self,
                 self.builtin_fun_symbol("TRACE"),
                 SpecFunEntry {
-                    loc,
+                    loc: loc.clone(),
                     oper: Operation::Trace,
                     type_params: vec![param_t.clone()],
                     arg_types: vec![param_t.clone()],
                     result_type: param_t.clone(),
+                },
+            );
+
+            // Custom
+            add_builtin(
+                self,
+                self.builtin_fun_symbol("count"),
+                SpecFunEntry {
+                    loc,
+                    oper: Operation::Count,
+                    type_params: vec![param_t.clone()],
+                    arg_types: vec![],
+                    result_type: num_t.clone(),
                 },
             );
         }
